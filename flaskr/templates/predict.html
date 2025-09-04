@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <title>pred-playground</title>
+    </head>
+    <body>
+        <h1>預金申し込み予測</h1>
+            <form action="{{ url_for('into_rf')}}" method="post">
+                <table border="1">
+                    <tr>
+                        <th>年齢</th>
+                        <th>残高($)</th>
+                        <th>通話時間(s)</th>
+                        <th>住宅ローンの有無</th>
+                        <th>連絡手段：携帯電話</th>
+                        <th>連絡手段：不明</th>
+                        <th>前回キャンペーンから
+                            の経過日数</th>
+                        <th>前回キャンペーンで申し込み有</th>
+                    </tr>
+                    <tr>
+                        <td><input type="number" step="1" name="age" required></td>
+                        <td><input type="number" name="balance" required></td>
+                        <td><input type="number" step="1" name="duration" required></td>
+                        <td>
+                            <input type="radio" name="housing" value="0" required> 無
+                            <input type="radio" name="housing" value="1" required> 有
+                        </td>
+                        <td>
+                            <input type="radio" name="contact_cellular" value="0" required> NO
+                            <input type="radio" name="contact_cellular" value="1" required> YES
+                        </td>
+                        <td>
+                            <input type="radio" name="contact_unknown" value="0" required> NO
+                            <input type="radio" name="contact_unknown" value="1" required> YES
+                        </td>
+                        <td><input type="number" step="1" name="pdays"></td>
+                        <td>
+                            <input type="radio" name="poutcome_success" value="0" required> 無
+                            <input type="radio" name="poutcome_success" value="1" required> 有
+                        </td>
+                    </tr>
+                </table>
+                <button type="submit">予測</button>
+            </form>
+    </body>
+</html>

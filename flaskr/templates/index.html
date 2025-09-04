@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <title>pred-playground</title>
+    </head>
+    <body>
+        <h1>預金申し込み予測</h1>
+        <table border="1">
+            <tr>
+                <th>年齢</th>
+                <th>残高($)</th>
+                <th>通話時間(s)</th>
+                <th>住宅ローンの有無</th>
+                <th>連絡手段：携帯電話</th>
+                <th>連絡手段：不明</th>
+                <th>前回キャンペーンから
+                    の経過日数</th>
+                <th>前回キャンペーンで申し込み有</th>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </table>
+        <a href="{{ url_for('goto_predict')}}">データ入力画面</a>
+    </body>
+</html>

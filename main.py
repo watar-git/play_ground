@@ -1,4 +1,4 @@
-from flaskr import app
+from play_ground import app
 from flask import render_template, request
 import joblib
 import pandas as pd
@@ -6,7 +6,6 @@ import pandas as pd
 
 @app.route('/')
 def index():
-
     return render_template(
         'index.html'
         )

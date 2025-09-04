@@ -1,4 +1,4 @@
-from play_ground import app
+from flaskr import app
 from flask import render_template, request
 import joblib
 import pandas as pd

@@ -6,13 +6,19 @@ import pandas as pd
 
 @app.route('/')
 def index():
+
     return render_template(
         'index.html'
         )
 
 def _predict(data):
-    predict = app.rf.predict(data)
-    return predict
+    if data["previous"].sum() == 0:
+        predict0True = app.gbrf_0True.predict(data)
+        return predict0True
+    else: 
+        predict0False = app.gbrf_0False.predict(data)
+        return predict0False
+    
 
 @app.route('/goto_predict')
 def goto_predict():
@@ -20,25 +26,29 @@ def goto_predict():
         'predict.html'
         )
 
-@app.route('/into_rf', methods=['POST'])
-def into_rf():
+
+@app.route('/set_X', methods=["POST"])
+def set_X():
     X = {
-        "duration":request.form['duration'],
-        "balance":request.form['balance'],
-        "contact_unknown":request.form['contact_unknown'],
-        "poutcome_success":request.form['poutcome_success'],
-        "housing":request.form['housing'],
-        "contact_cellular":request.form['contact_cellular'],
-        "pdays":request.form['pdays'],
-        "age":request.form['age']
-        }
-    data = pd.DataFrame([X])
+    "age": int(request.form['age']),
+    "job": request.form['job'],
+    "marital": request.form['marital'],
+    "education": request.form['education'],
+    "default": int(request.form['default']),
+    "balance": int(request.form['balance']),
+    "housing": int(request.form['housing']),
+    "loan": int(request.form['loan']),
+    "contact": request.form['contact'],
+    "duration": int(request.form['duration']),
+    "campaign": int(request.form['campaign']),
+    "pdays": int(request.form['pdays']),
+    "previous": int(request.form['previous']),
+    "poutcome": request.form['poutcome']
+    }
+
+    df = pd.DataFrame([X])
+
     return render_template(
         'result.html',
-        pred = _predict(data)
-        )
-    
-if __name__ == "__main__":
-    import os
-    port = int(os.environ.get("PORT", 5000))
-    app.run(host="0.0.0.0", port=port)
+        pred = _predict(df)[0])
+

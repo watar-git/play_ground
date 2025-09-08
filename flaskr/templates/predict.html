@@ -6,39 +6,99 @@
     </head>
     <body>
         <h1>預金申し込み予測</h1>
-            <form action="{{ url_for('into_rf')}}" method="post">
+            <form action="{{ url_for('set_X') }}" method="post">
                 <table border="1">
                     <tr>
                         <th>年齢</th>
-                        <th>残高($)</th>
-                        <th>通話時間(s)</th>
+                        <th>職種</th>
+                        <th>世帯状況</th>
+                        <th>学歴</th>
+                        <th>債務不履行の経験</th>
+                        <th>銀行残高</th>
                         <th>住宅ローンの有無</th>
-                        <th>連絡手段：携帯電話</th>
-                        <th>連絡手段：不明</th>
-                        <th>前回キャンペーンから
-                            の経過日数</th>
-                        <th>前回キャンペーンで申し込み有</th>
+                        <th>個人ローンの有無</th>
+                        <th>連絡手段</th>
+                        <th>通話時間</th>
+                        <th>キャンペーン中の連絡回数</th>
+                        <th>以前のキャンペーンからの経過日</th>
+                        <th>過去キャンペーン時の連絡回数</th>
+                        <th>過去のキャンペーン結果</th>
                     </tr>
                     <tr>
                         <td><input type="number" step="1" name="age" required></td>
-                        <td><input type="number" name="balance" required></td>
-                        <td><input type="number" step="1" name="duration" required></td>
                         <td>
-                            <input type="radio" name="housing" value="0" required> 無
-                            <input type="radio" name="housing" value="1" required> 有
+                            <select id = "job" name="job" required>
+                                <option value="technician">技術者</option>
+                                <option value="blue-collar">ブルーカラー</option>
+                                <option value="student">学生</option>
+                                <option value="admin.">事務職</option>
+                                <option value="management">管理職</option>
+                                <option value="entrepreneur">起業家</option>
+                                <option value="self-employed">自営業</option>
+                                <option value="services">サービス職</option>
+                                <option value="retired">退職者</option>
+                                <option value="housemaid">家事手伝い</option>
+                                <option value="unemployed">無職</option>
+                                <option value="unknown">不明</option>
+                            </select>
                         </td>
                         <td>
-                            <input type="radio" name="contact_cellular" value="0" required> NO
-                            <input type="radio" name="contact_cellular" value="1" required> YES
+                            <select name="marital" id="marital">
+                                <option value="married">既婚</option>
+                                <option value="single">独身</option>
+                                <option value="divorced">離婚</option>
+                            </select>
                         </td>
                         <td>
-                            <input type="radio" name="contact_unknown" value="0" required> NO
-                            <input type="radio" name="contact_unknown" value="1" required> YES
+                            <select id="education" name="education" required>
+                                <option value="secondary">中等教育</option>
+                                <option value="primary">初等教育</option>
+                                <option value="tertiary">高等教育</option>
+                                <option value="unknown">不明</option>
+                            </select>
                         </td>
-                        <td><input type="number" step="1" name="pdays"></td>
                         <td>
-                            <input type="radio" name="poutcome_success" value="0" required> 無
-                            <input type="radio" name="poutcome_success" value="1" required> 有
+                            <select name="default" id="default">
+                                <option value="0">NO</option>
+                                <option value="1">YES</option>
+                            </select>
+                        </td>
+                        <td><input type="number" step="1" name="balance"  required></td>
+                        <td>
+                            <select name="housing" id="housing">
+                                <option value="0">NO</option>
+                                <option value="1">YES</option>
+                            </select>
+                        </td> 
+                        <td>
+                            <select name="loant" id="loant">
+                                <option value="0">NO</option>
+                                <option value="1">YES</option>
+                            </select>
+                        </td>
+                        <td>
+                            <select id="contct" name="contact">
+                                <option value="cellular">携帯電話</option>
+                                <option value="telephone">固定電話</option>
+                                <option value="unknown">不明</option>
+                            </select>
+                        </td>
+                        <td><input type="number" name="duration" step="1" required></td>
+                        <td><input type="number" name="campaign" step="1"></td>
+                        <td><input type="number" name="pdays" step="1"></td>
+                        <td>
+                            <select id="previous" name="previous">
+                                <option value=0>NO</option>
+                                <option value=1>YES</option>
+                            </select>
+                        </td>
+                        <td>
+                            <select id="poutcome" name="poutcome">
+                                <option value="failure">失敗</option>
+                                <option value="success">成功</option>
+                                <option value="other">その他</option>
+                                <option value="unknown">不明</option>
+                            </select>
                         </td>
                     </tr>
                 </table>
